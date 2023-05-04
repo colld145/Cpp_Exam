@@ -1,13 +1,11 @@
-Створіть додаток «Каталог текстів пісень». Додаток мусить мати такі можливості:
+# [MyLyrics](https://github.com/colld145/Cpp_Exam)
+MyLyrics is an application for dealing with lyrics.
 
-Додавання тексту пісні:
-Текст пісні:
-може бути введений з клавіатури;
-завантажений з файлу.
-Для кожної пісні потрібно вказувати назву пісні, автора тексту і рік створення пісні (якщо він відомий).
-Видалення тексту пісні.
-Зміна тексту пісні.
-Відображення тексту пісні на екрані.
-Збереження тексту пісні у файл.
-Пошук та відображення всіх пісень одного автора.
-Пошук та відображення всіх пісень, що містять слово, вказане користувачем.
+## Description
+
+#### Functions
+* **The lyrics**: Add, edit and delete.
+* **Files**: Load text from a file, save them to a file.
+* **Search**: Easy search by author, keywords, etc.
+
+The application includes basic functions of working with text files using C++.
