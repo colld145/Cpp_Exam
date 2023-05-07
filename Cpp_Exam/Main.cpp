@@ -1,89 +1,19 @@
 ﻿#include <iostream>
 #include <fstream>
 #include <string>
-#include <windows.h>
+#include <Windows.h>
+#include "Menu.h"
+#include "Song.h"
+#include "Functions.h"
 using namespace std;
-
-struct Menu {
-
-
-
-	void MainMenu() {
-		cout << "==MyLyrics=====================" << endl;
-		cout << "1. Start\n2. Library\n3. Search\n\n0. Exit" << endl;
-		cout << "Enter choice: ";
-	}
-
-	void Start() {
-		cout << "==Start========================" << endl;
-		cout << "1. First song\n2. Second song\n3. Third song\n\n0. Back" << endl;
-		cout << "Enter choice: ";
-	}
-
-	void Library() {
-		cout << "==Library======================" << endl;
-		cout << "1. Add\n2. Edit\n3. Delete\n\n0. Back" << endl;
-		cout << "Enter choice: ";
-	}
-
-	void Search() {
-		cout << "==Search=======================" << endl;
-		cout << "1. Artist\n2. Keywords\n\n0. Back" << endl;
-		cout << "Enter choice: ";
-	}
-
-	void Load() {
-		Sleep(100);
-		cout << "$$$          $$$              $$                              $$" << endl;
-		Sleep(100);
-		cout << "$$$$        $$$$              $$" << endl;
-		Sleep(100);
-		cout << "$$ $$      $$ $$  $$      $$  $$        $$      $$  $$ $$$$$  $$    $$$$$$     $$$$$$$$" << endl;
-		Sleep(100);
-		cout << "$$  $$    $$  $$   $$    $$   $$         $$    $$   $$$$      $$  $$$          $$$" << endl;
-		Sleep(100);
-		cout << "$$   $$  $$   $$    $$  $$    $$          $$  $$    $$        $$  $$             $$$$" << endl;
-		Sleep(100);
-		cout << "$$    $$$$    $$     $$$$     $$           $$$$     $$        $$  $$$               $$$" << endl;
-		Sleep(100);
-		cout << "$$     $$     $$      $$      $$$$$$$$      $$      $$        $$    $$$$$$     $$$$$$$$" << endl;
-		Sleep(100);
-		cout << "                     $$                    $$" << endl;
-		Sleep(100);
-		cout << "	            $$                    $$" << endl;
-		cout << endl;
-		Sleep(1000);
-		float progress = 0.0;
-		while (progress < 1.0) {
-			int barWidth = 70;
-
-			cout << "[";
-			int pos = barWidth * progress;
-			for (int i = 0; i < barWidth; ++i) {
-				if (i < pos) cout << "=";
-				else if (i == pos) cout << ">";
-				else cout << " ";
-			}
-			cout << "] " << int(progress * 100.0) << " %\r";
-			cout.flush();
-
-			progress += 0.001;
-		}
-		cout << endl;
-		system("cls");
-	}
-
-};
-
-
-
-
 
 void main() 
 {
 	bool exit = false;
 	Menu menu;
-	menu.Load();
+	int size = 0;
+	Song *library = new Song[size];
+	menu.Loading();
 	while (!exit)
 	{
 		int choice = 0;
@@ -98,6 +28,7 @@ void main()
 			system("cls");
 			if (choice == 1) {
 				cout << "First song" << endl;
+				
 			}
 			else if (choice == 2) {
 				cout << "Second song" << endl;
@@ -115,6 +46,7 @@ void main()
 			system("cls");
 			if (choice == 1) {
 				cout << "Add." << endl;
+				AddSong(library, size);
 			}
 			else if (choice == 2) {
 				cout << "Edit." << endl;
