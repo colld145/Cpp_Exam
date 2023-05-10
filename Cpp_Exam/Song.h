@@ -8,7 +8,7 @@ public:
 	int number;
 	string name;
 	string artist;
-	int year;
+	string year;
 	string lyrics[1000];
 	int lines = 0;
 

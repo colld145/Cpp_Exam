@@ -16,49 +16,75 @@ void main()
 	menu.Loading();
 	while (!exit)
 	{
+		Numbering(library, size);
 		int choice = 0;
+		int tempChoice = 0;
 		menu.MainMenu();
 		cin >> choice;
 		system("cls");
 		switch (choice)
 		{
-		case 1:
-			menu.Start();
-			cin >> choice;
-			system("cls");
-			if (choice == 1) {
-				cout << "First song" << endl;
-				
-			}
-			else if (choice == 2) {
-				cout << "Second song" << endl;
-			}
-			else if (choice == 3) {
-				cout << "Third song" << endl;
-			}
-			else {
+		case 1: // START
+			if (size == 0) {
+				cout << "You don't have any songs.\nChoose a library and try to add new song.\n" << endl;
+				system("pause");
+				system("cls");
 				break;
 			}
+			PrintSongs(library, size);
+			menu.Start();
+			cin >> choice;
+			if (choice == 0) {
+				system("cls");
+				break;
+			}
+			system("cls");
+			library[choice - 1].Print();
+			cout << endl;
+			system("pause");
+			system("cls");
 			break;
-		case 2:
+
+		case 2: // LIBRARY
 			menu.Library();
 			cin >> choice;
 			system("cls");
 			if (choice == 1) {
-				cout << "Add." << endl;
 				AddSong(library, size);
 			}
 			else if (choice == 2) {
-				cout << "Edit." << endl;
+				PrintSongs(library, size);
+				cout << "Enter a song number to edit: ";
+				cin >> choice;
+				system("cls");
+
+				library[choice - 1].PrintPreview();
+				cout << "Enter what do you want to edit?\n1. Name\n2. Artist\n3. Year\n4. Lyrics\n\n0. Back" << endl;
+				cout << "Enter choice: ";
+				cin >> tempChoice;
+
+				if (tempChoice == 0) {
+					system("cls");
+					break;
+				}
+
+				EditSong(library, size, choice, tempChoice);
+				system("cls");
 			}
 			else if (choice == 3) {
-				cout << "Delete." << endl;
+				PrintSongs(library, size);
+				cout << "Enter a song number to delete: ";
+				cin >> choice;
+				DeleteSong(library, size, choice);
+				system("cls");
+				break;
 			}
 			else {
 				break;
 			}
 			break;
-		case 3:
+
+		case 3: // SEARCH
 			menu.Search();
 			cin >> choice;
 			system("cls");
@@ -72,9 +98,11 @@ void main()
 				break;
 			}
 			break;
-		case 0:
+
+		case 0: // EXIT
 			exit++;
 			break;
+
 		default:
 			cout << "Wrong choice!" << endl;
 			break;

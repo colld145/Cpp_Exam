@@ -11,7 +11,8 @@ void Menu::MainMenu() {
 
 void Menu::Start() {
 	cout << "==Start========================" << endl;
-	cout << "1. First song\n2. Second song\n3. Third song\n\n0. Back" << endl;
+	//cout << "1. First song\n2. Second song\n3. Third song\n\n0. Back" << endl;
+	cout << "You can choose song's number or Back(0)." << endl;
 	cout << "Enter choice: ";
 }
 
@@ -65,5 +66,6 @@ void Menu::Loading() {
 		progress += 0.001;
 	}
 	cout << endl;
+	Sleep(500);
 	system("cls");
 }
