@@ -4,26 +4,73 @@
 using namespace std;
 
 void Menu::MainMenu() {
-	cout << "==MyLyrics=====================" << endl;
+	for (int i = 0; i < 24; i++) {
+		if (i == 2) {
+			Sleep(10);
+			cout << "MyLyrics";
+		}
+		else {
+			Sleep(10);
+			cout << "=";
+		}
+	}
+	cout << endl;
+	Sleep(40);
+	//cout << "==MyLyrics=====================" << endl;
 	cout << "1. Start\n2. Library\n3. Search\n\n0. Exit" << endl;
 	cout << "Enter choice: ";
 }
 
 void Menu::Start() {
-	cout << "==Start========================" << endl;
-	//cout << "1. First song\n2. Second song\n3. Third song\n\n0. Back" << endl;
-	cout << "You can choose song's number or Back(0)." << endl;
+	for (int i = 0; i < 27; i++) {
+		if (i == 2) {
+			Sleep(10);
+			cout << "Start";
+		}
+		else {
+			Sleep(10);
+			cout << "=";
+		}
+	}
+	cout << endl;
+	Sleep(40);
+	//cout << "==Start========================" << endl;
+	cout << "You can choose song's number.\n\n0. Back" << endl;
 	cout << "Enter choice: ";
 }
 
 void Menu::Library() {
-	cout << "==Library======================" << endl;
-	cout << "1. Add\n2. Edit\n3. Delete\n\n0. Back" << endl;
+	for (int i = 0; i < 25; i++) {
+		if (i == 2) {
+			Sleep(10);
+			cout << "Library";
+		}
+		else {
+			Sleep(10);
+			cout << "=";
+		}
+	}
+	cout << endl;
+	Sleep(40);
+	//cout << "==Library======================" << endl;
+	cout << "1. Create a new song\n2. Edit song\n3. Delete song\n\n0. Back" << endl;
 	cout << "Enter choice: ";
 }
 
 void Menu::Search() {
-	cout << "==Search=======================" << endl;
+	for (int i = 0; i < 26; i++) {
+		if (i == 2) {
+			Sleep(10);
+			cout << "Search";
+		}
+		else {
+			Sleep(10);
+			cout << "=";
+		}
+	}
+	cout << endl;
+	Sleep(40);
+	//cout << "==Search=======================" << endl;
 	cout << "1. Artist\n2. Keywords\n\n0. Back" << endl;
 	cout << "Enter choice: ";
 }

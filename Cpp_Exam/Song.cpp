@@ -1,6 +1,7 @@
 #include "Song.h"
 #include <iostream>
 #include <string>
+#include <conio.h>
 
 using namespace std;
 
@@ -12,13 +13,17 @@ void Song::Fill() {
 	getline(cin, artist);
 	cout << "Enter the song year: ";
 	cin >> year;
-	cout << "Enter number of lines: ";
-	cin >> lines;
-	cout << "Enter the lyrics: ";
+	cout << "Enter the lyrics. (Press 'Escape' if you want to stop): " << endl;
 	cin.ignore();
-	for (int i = 0; i < lines; i++)
+	char symbol;
+	while (lines < MAX_SIZE)
 	{
-		getline(cin, lyrics[i]);
+		symbol = _getch();
+		if (symbol == 27) {
+			break;
+		}
+		getline(cin, lyrics[lines]);
+		lines++;
 	}
 }
 
@@ -28,9 +33,14 @@ void Song::Print() {
 	cout << "Artist: " << artist << endl;
 	cout << "Year: " << year << endl;
 	cout << "Lyrics: " << endl;
+	cout << "---------------------------------------------------------" << endl;
+	cout << endl;
 	for (int i = 0; i < lines; i++) {
-		cout << lyrics[i] << endl;
+		cout << "\t" << lyrics[i] << endl;
 	}
+	cout << endl;
+	cout << "---------------------------------------------------------" << endl;
+
 
 
 }

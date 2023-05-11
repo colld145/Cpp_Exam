@@ -10,95 +10,147 @@ using namespace std;
 void main() 
 {
 	bool exit = false;
+	bool tempExit = false;
 	Menu menu;
 	int size = 0;
 	Song *library = new Song[size];
+
 	menu.Loading();
+
 	while (!exit)
 	{
-		Numbering(library, size);
 		int choice = 0;
 		int tempChoice = 0;
 		menu.MainMenu();
+
 		cin >> choice;
 		system("cls");
+
 		switch (choice)
 		{
+
 		case 1: // START
-			if (size == 0) {
-				cout << "You don't have any songs.\nChoose a library and try to add new song.\n" << endl;
+			while (!tempExit)
+			{
+
+				if (size == 0) {
+					cout << "You don't have any songs.\nChoose a library and try to add new song.\n" << endl;
+					system("pause");
+					system("cls");
+					tempExit++;
+					break;
+				}
+				Numbering(library, size);
+				PrintSongs(library, size);
+				menu.Start();
+				cin >> choice;
+				if (choice == 0) {
+					system("cls");
+					tempExit++;
+					break;
+				}
+				system("cls");
+				library[choice - 1].Print();
+				cout << endl;
 				system("pause");
 				system("cls");
-				break;
+				
 			}
-			PrintSongs(library, size);
-			menu.Start();
-			cin >> choice;
-			if (choice == 0) {
-				system("cls");
-				break;
-			}
-			system("cls");
-			library[choice - 1].Print();
-			cout << endl;
-			system("pause");
-			system("cls");
+			tempExit = false;
 			break;
 
 		case 2: // LIBRARY
-			menu.Library();
-			cin >> choice;
-			system("cls");
-			if (choice == 1) {
-				AddSong(library, size);
-			}
-			else if (choice == 2) {
-				PrintSongs(library, size);
-				cout << "Enter a song number to edit: ";
+			while (!tempExit) {
+				Numbering(library, size);
+				menu.Library();
 				cin >> choice;
 				system("cls");
 
-				library[choice - 1].PrintPreview();
-				cout << "Enter what do you want to edit?\n1. Name\n2. Artist\n3. Year\n4. Lyrics\n\n0. Back" << endl;
-				cout << "Enter choice: ";
-				cin >> tempChoice;
+				switch (choice)
+				{
 
-				if (tempChoice == 0) {
+				case 1:
+					AddSong(library, size);
 					system("cls");
 					break;
-				}
 
-				EditSong(library, size, choice, tempChoice);
-				system("cls");
+				case 2:
+					if (size == 0) {
+						cout << "You don't have any songs.\nTry to add new song.\n" << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
+					PrintSongs(library, size);
+					cout << "Enter a song number to edit: ";
+					cin >> choice;
+					system("cls");
+					library[choice - 1].PrintPreview();
+					cout << endl;
+					cout << "1. Edit name\n2. Edit artist\n3. Edit year\n4. Add new lines to lyrics\n5. Edit lines in lyrics\n6. Delete lines in lyrics\n\n0. Back" << endl;
+					cout << "Enter choice: ";
+					cin >> tempChoice;
+					system("cls");
+					EditSong(library, size, choice, tempChoice);
+					system("cls");
+					break;
+
+				case 3:
+					if (size == 0) {
+						cout << "You don't have any songs.\nTry to add new song.\n" << endl;
+						system("pause");
+						system("cls");
+						break;
+					}
+					PrintSongs(library, size);
+					cout << "Enter a song number to delete: ";
+					cin >> choice;
+					DeleteSong(library, size, choice);
+					system("cls");
+					break;
+
+				case 0:
+					tempExit++;
+					break;
+
+				default:
+					cout << "Wrong choice!" << endl;
+					break;
+				}
 			}
-			else if (choice == 3) {
-				PrintSongs(library, size);
-				cout << "Enter a song number to delete: ";
-				cin >> choice;
-				DeleteSong(library, size, choice);
-				system("cls");
-				break;
-			}
-			else {
-				break;
-			}
+			tempExit = false;
 			break;
 
 		case 3: // SEARCH
-			menu.Search();
-			cin >> choice;
-			system("cls");
-			if (choice == 1) {
-				cout << "Artist." << endl;
-			}
-			else if (choice == 2) {
-				cout << "Keywords." << endl;
-			}
-			else {
-				break;
-			}
-			break;
+			while (!tempExit) {
+				Numbering(library, size);
+				menu.Search();
+				cin >> choice;
+				system("cls");
 
+				switch (choice)
+				{
+
+				case 1:
+					cout << "Artist." << endl;
+					break;
+
+				case 2:
+					cout << "Keywords." << endl;
+					break;
+
+				case 0:
+					tempExit++;
+					break;
+
+				default:
+					cout << "Wrong choice!" << endl;
+					break;
+				}
+			}
+			tempExit = false;
+			break;
+	
 		case 0: // EXIT
 			exit++;
 			break;
