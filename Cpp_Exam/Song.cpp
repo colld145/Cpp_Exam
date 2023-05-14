@@ -18,8 +18,8 @@ void Song::Fill() {
 	char symbol;
 	while (lines < MAX_SIZE)
 	{
-		symbol = _getch();
-		if (symbol == 27) {
+		symbol = _getch(); // _getch() checks all invisible symbols
+		if (symbol == 27) { // 27 symbol is 'Escape'
 			break;
 		}
 		getline(cin, lyrics[lines]);
