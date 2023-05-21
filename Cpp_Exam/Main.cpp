@@ -14,6 +14,7 @@ void main()
 	Menu menu;
 	int size = 0;
 	Song *library = new Song[size];
+	ReadFromFile(library, size);
 
 	menu.Loading();
 

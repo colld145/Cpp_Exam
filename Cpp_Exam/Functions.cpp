@@ -2,6 +2,7 @@
 #include <string>
 #include "Song.h"
 #include <conio.h>
+#include <fstream>
 
 using namespace std;
 
@@ -200,6 +201,43 @@ void FindByArtist(Song*& library, int& size, string& choice) {
 		cout << "No songs found!" << endl;
 	}
 
+}
+
+void ReadFromFile(Song*& library, int& size) {
+	int iterator = 1;
+	string tempLine;
+	fstream file;
+	file.open("library.txt", ios_base::in);
+
+	while (getline(file, tempLine))
+	{
+		if (tempLine.empty()) {
+			iterator++;
+		}
+	}
+
+	size = iterator;
+	library = new Song[size];
+	
+	file.clear();
+	file.seekg(0, ios::beg);
+
+	for (int i = 0; i < size; i++) {
+		getline(file, library[i].name);
+		getline(file, library[i].artist);
+		file >> library[i].year;
+		file.ignore();
+
+		string line;
+		while (getline(file, line)) {
+			if (line.empty()) {
+				break;
+			}
+			library[i].lyrics[library[i].lines] = line;
+			library[i].lines++;
+		}
+	}
+	file.close();
 }
 
 int Numbering(Song*& library, int& size) {
