@@ -240,6 +240,31 @@ void ReadFromFile(Song*& library, int& size) {
 	file.close();
 }
 
+void WriteToFile(Song*& library, int& size) {
+	
+	fstream file;
+
+	file.open("library.txt", std::ofstream::out);
+	file.close();
+
+	file.open("library.txt");
+
+	for (int i = 0; i < size; i++)
+	{
+		file << library[i].name << endl;
+		file << library[i].artist << endl;
+		file << library[i].year << endl;
+		for (int j = 0; j < library[i].lines; j++)
+		{
+			file << library[i].lyrics[j] << endl;
+		}
+		if (i != size - 1) {
+			file << endl;
+		}
+	}
+	file.close();
+}
+
 int Numbering(Song*& library, int& size) {
 	int number = 1;
 	for (int i = 0; i < size; i++)
