@@ -151,7 +151,9 @@ void main()
 					break;
 
 				case 2: // Search by keywords
-					cout << "Keywords." << endl;
+					cout << "Enter the keyword to search: ";
+					cin >> stringChoice;
+					FindByKeyword(library, size, stringChoice);
 					break;
 
 				case 0: // Back

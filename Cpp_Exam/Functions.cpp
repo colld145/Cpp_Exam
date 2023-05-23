@@ -203,15 +203,39 @@ void FindByArtist(Song*& library, int& size, string& choice) {
 
 }
 
+void FindByKeyword(Song*& library, int& size, string& choice) {
+	
+	bool result = false;
+
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < MAX_SIZE; j++)
+		{
+			int search = library[i].lyrics[j].find(choice);
+			if (search != -1) {
+				library[i].PrintPreview();
+				cout << endl;
+				result++;
+				break;
+			}
+		}
+	}
+
+	if (result == false) {
+		cout << "No songs found!" << endl;
+	}
+
+}
+
 void ReadFromFile(Song*& library, int& size) {
-	int iterator = 1;
+	int iterator = 0;
 	string tempLine;
 	fstream file;
 	file.open("library.txt", ios_base::in);
 
 	while (getline(file, tempLine))
 	{
-		if (tempLine.empty()) {
+		if (tempLine == "---------------------------------") {
 			iterator++;
 		}
 	}
@@ -230,7 +254,7 @@ void ReadFromFile(Song*& library, int& size) {
 
 		string line;
 		while (getline(file, line)) {
-			if (line.empty()) {
+			if (line == "---------------------------------") {
 				break;
 			}
 			library[i].lyrics[library[i].lines] = line;
@@ -258,9 +282,8 @@ void WriteToFile(Song*& library, int& size) {
 		{
 			file << library[i].lyrics[j] << endl;
 		}
-		if (i != size - 1) {
-			file << endl;
-		}
+		file << "---------------------------------" << endl;
+		
 	}
 	file.close();
 }
